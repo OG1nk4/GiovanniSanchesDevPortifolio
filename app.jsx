@@ -147,7 +147,7 @@ export default function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const theme = tweaks.theme;
 
-  const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('gs_intro_seen'));
+  const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => { localStorage.setItem('gs_lang', lang); }, [lang]);
   useEffect(() => {
@@ -161,7 +161,6 @@ export default function App() {
   }, []);
 
   const handleIntroComplete = () => {
-    sessionStorage.setItem('gs_intro_seen', 'true');
     setShowIntro(false);
   };
 

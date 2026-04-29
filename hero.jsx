@@ -25,7 +25,7 @@ export function Hero({ lang }) {
       <video
         className="hero-video"
         autoPlay muted loop playsInline
-        poster="assets/giovanni-portrait.png"
+        poster="/giovanni-portrait.png"
       >
         <source src="assets/intro.mp4" type="video/mp4" />
       </video>
@@ -36,7 +36,7 @@ export function Hero({ lang }) {
 
       {/* Portrait — decorative, right side */}
       <img
-        src="assets/giovanni-portrait.png"
+        src="/giovanni-portrait.png"
         alt=""
         aria-hidden="true"
         className={`hero-portrait ${ready ? 'hero-portrait--in' : ''}`}

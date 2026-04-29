@@ -12,7 +12,7 @@ export function About({ lang }) {
         <div className="about-grid" style={{ marginTop: 60 }}>
           <div className="about-photo-wrap">
             <div className="photo-glow"></div>
-            <img src="assets/giovanni-headshot.jpeg" alt="Giovanni" />
+            <img src="/giovanni-portrait.png" alt="Giovanni" />
             <div className="about-meta">
               <span>{t.meta_a}</span>
               <span className="pulse">{t.meta_b}</span>

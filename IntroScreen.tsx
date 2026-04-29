@@ -259,13 +259,13 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
       ease:     'power3.out',
     }, 0.3);
 
-    // 0.8s — Glow pulsa: 0px → 40px (0.25s) → 20px (0.25s)
+    // 0.8s — Glow pulsa: 0px → 60px (0.25s) → 30px (0.25s)
     tl.to(logoImgRef.current, {
-      filter:   `drop-shadow(0 0 40px ${ACCENT})`,
+      filter:   `drop-shadow(0 0 80px ${ACCENT})`,
       duration: 0.25,
       ease:     'power2.out',
     }, 0.8).to(logoImgRef.current, {
-      filter:   `drop-shadow(0 0 20px ${ACCENT})`,
+      filter:   `drop-shadow(0 0 45px ${ACCENT})`,
       duration: 0.25,
       ease:     'power2.in',
     }, 1.05);
@@ -393,10 +393,11 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 src="/logo-gs.png"
                 alt="GS — Giovanni Sanches"
                 style={{
-                  width:      'clamp(100px, 15vw, 160px)',
+                  width:      'clamp(160px, 25vw, 260px)',
                   height:     'auto',
+                  padding:    '10px',
                   display:    'block',
-                  filter:     `drop-shadow(0 0 20px ${ACCENT})`,
+                  filter:     `drop-shadow(0 0 45px ${ACCENT})`,
                   willChange: 'filter',
                 }}
               />
