@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { I18N } from './data.js';
 import { Icon } from './icons.jsx';
 
@@ -311,6 +311,101 @@ export function Contact({ lang }) {
       <div className="footer">
         <span>{I18N[lang].footer.left}</span>
         <span>{I18N[lang].footer.right}</span>
+      </div>
+    </section>
+  );
+}
+
+// ─── Terminal Section (moved from Hero) ───────────────────────────────────────
+
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+function colorize(text, type) {
+  if (type === 'comment') return text;
+  const parts = [];
+  let i = 0;
+  const re = /("[^"]*")|(\b\d+\b)|(\b(const|await|new|true|false|null)\b)|(\w+\()|(\w+:)/g;
+  let last = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(<span key={i++}>{text.slice(last, m.index)}</span>);
+    if      (m[1]) parts.push(<span key={i++} className="t-str">{m[1]}</span>);
+    else if (m[2]) parts.push(<span key={i++} className="t-num">{m[2]}</span>);
+    else if (m[3]) parts.push(<span key={i++} className="t-key">{m[3]}</span>);
+    else if (m[5]) parts.push(<span key={i++} className="t-fn">{m[5]}</span>);
+    else if (m[6]) parts.push(<span key={i++} className="t-key">{m[6]}</span>);
+    last = re.lastIndex;
+  }
+  if (last < text.length) parts.push(<span key={i++}>{text.slice(last)}</span>);
+  return parts;
+}
+
+function TypingTerminal({ progress, lines }) {
+  const total = lines.reduce((s, l) => s + l.text.length + 1, 0);
+  const charsToShow = Math.floor(progress * total);
+  let acc = 0;
+  return (
+    <div className="terminal-body">
+      {lines.map((line, i) => {
+        const start = acc;
+        const end = acc + line.text.length;
+        acc = end + 1;
+        const localChars = clamp(charsToShow - start, 0, line.text.length);
+        if (localChars <= 0 && i > 0 && charsToShow < start) return null;
+        const visible = line.text.slice(0, localChars);
+        const isCursor = charsToShow >= start && charsToShow <= end;
+        return (
+          <div key={i} className={`t-line ${line.type === 'comment' ? 't-comment' : ''}`}>
+            {line.type === 'code' && i > 0 ? <span className="t-prompt">$ </span> : null}
+            {colorize(visible, line.type)}
+            {isCursor && <span className="t-cur" />}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export function TerminalSection({ lang }) {
+  const t = I18N[lang].hero;
+  const [progress, setProgress] = useState(0);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        let start = null;
+        const dur = 4200;
+        const tick = (ts) => {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / dur, 1);
+          setProgress(p);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.25 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="terminal-section" id="code" ref={ref}>
+      <div className="container">
+        <span className="eyebrow">{lang === 'pt' ? '02.5 — Como penso' : '02.5 — How I think'}</span>
+        <h2 className="section-title" style={{ marginTop: 18, marginBottom: 48 }}>
+          {lang === 'pt' ? 'O meu ' : 'My '}<em>{lang === 'pt' ? 'código' : 'code'}</em>
+        </h2>
+        <div className="terminal" style={{ maxWidth: 860 }}>
+          <div className="terminal-bar">
+            <span className="dot r" /><span className="dot y" /><span className="dot g" />
+            <span className="title">~/giovanni-sanches/portfolio</span>
+            <span className="badge">zsh · v3.0</span>
+          </div>
+          <TypingTerminal progress={progress} lines={t.typing} />
+        </div>
       </div>
     </section>
   );

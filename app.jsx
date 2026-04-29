@@ -1,55 +1,94 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { I18N } from './data.js';
 import { Icon } from './icons.jsx';
 import { Hero } from './hero.jsx';
-import { About, StackSection, Projects, Services, Education, Contact } from './sections.jsx';
+import { About, StackSection, Projects, Services, Education, Contact, TerminalSection } from './sections.jsx';
 import { TweaksPanel, TweakSection, TweakRadio, TweakToggle, TweakSlider, useTweaks } from './tweaks-panel.jsx';
 
 function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
-function MatrixRain({ density = 0.6 }) {
+// ─── Particle constellation effect (replaces Matrix Rain) ────────────────────
+function ParticleField({ density = 0.6 }) {
   const ref = useRef(null);
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let raf;
-    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハ{}<>/=*+-";
-    let drops = [];
-    let cols = 0;
-    const fontSize = 14;
+    const count = Math.round(clamp(density, 0.1, 1.5) * 65);
+    let pts = [];
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      cols = Math.floor(canvas.width / fontSize);
-      drops = Array(cols).fill(0).map(() => Math.random() * -50);
+      pts = Array.from({ length: count }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.32,
+        vy: (Math.random() - 0.5) * 0.32,
+        r: Math.random() * 1.4 + 0.4,
+        phase: Math.random() * Math.PI * 2,
+      }));
     };
     resize();
     window.addEventListener('resize', resize);
 
-    const speed = clamp(density, 0.1, 1.5);
-    const draw = () => {
-      ctx.fillStyle = "rgba(3,6,13,0.08)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = `${fontSize}px JetBrains Mono, monospace`;
-      for (let i = 0; i < drops.length; i++) {
-        const txt = chars[Math.floor(Math.random() * chars.length)];
-        const y = drops[i] * fontSize;
-        const grad = y / canvas.height;
-        ctx.fillStyle = `hsla(195, 100%, ${50 + (1-grad)*30}%, ${0.5 + (1-grad)*0.5})`;
-        ctx.fillText(txt, i * fontSize, y);
-        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i] += speed * 0.6;
-      }
+    // cap at 30fps for GPU efficiency
+    let lastT = 0;
+    const INTERVAL = 1000 / 30;
+
+    const draw = (ts) => {
       raf = requestAnimationFrame(draw);
+      if (ts - lastT < INTERVAL) return;
+      lastT = ts;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of pts) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.phase += 0.025;
+        if (p.x < 0) p.x = canvas.width;
+        else if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        else if (p.y > canvas.height) p.y = 0;
+      }
+
+      // connections
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 140 * 140) {
+            const a = (1 - Math.sqrt(d2) / 140) * 0.2;
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = `rgba(31,182,255,${a})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // nodes
+      for (const p of pts) {
+        const alpha = 0.45 + Math.sin(p.phase) * 0.3;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(31,182,255,${alpha})`;
+        ctx.fill();
+      }
     };
-    draw();
+    requestAnimationFrame(draw);
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
   }, [density]);
-  return <canvas id="matrix-bg" ref={ref}></canvas>;
+  return <canvas id="particle-bg" ref={ref} />;
 }
 
-function Nav({ lang, setLang, theme, setTheme }) {
+// ─── Nav ─────────────────────────────────────────────────────────────────────
+function Nav({ lang, setLang }) {
   const [compact, setCompact] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -59,18 +98,17 @@ function Nav({ lang, setLang, theme, setTheme }) {
   }, []);
   const n = I18N[lang].nav;
   const links = [
-    { href: '#about', label: n.about },
-    { href: '#stack', label: n.stack },
-    { href: '#work', label: n.work },
-    { href: '#services', label: n.services },
-    { href: '#contact', label: n.contact },
+    { href: '#about',   label: n.about    },
+    { href: '#stack',   label: n.stack    },
+    { href: '#work',    label: n.work     },
+    { href: '#services',label: n.services },
+    { href: '#contact', label: n.contact  },
   ];
   return (
     <>
       <nav className={`nav ${compact ? 'compact' : ''}`}>
         <a href="#home" className="nav-brand">
-          <span className="logo-mark">GS</span>
-          <span>GIOVANNI SANCHES</span>
+          <img src="assets/logo-full.png" alt="Giovanni Sanches" className="nav-logo-img" />
         </a>
         <div className="nav-links">
           {links.map((l, i) => <a key={i} href={l.href}>{l.label}</a>)}
@@ -98,9 +136,8 @@ function Nav({ lang, setLang, theme, setTheme }) {
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "dark",
-  "heroStyle": "terminal",
-  "particleDensity": 0.6,
-  "matrixOn": true
+  "particlesOn": true,
+  "particleDensity": 0.6
 }/*EDITMODE-END*/;
 
 export default function App() {
@@ -112,7 +149,6 @@ export default function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-  // viewport height var for mobile
   useEffect(() => {
     const set = () => document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
     set();
@@ -122,12 +158,13 @@ export default function App() {
 
   return (
     <>
-      {tweaks.matrixOn && <MatrixRain density={tweaks.particleDensity} />}
-      <div className="grain"></div>
-      <Nav lang={lang} setLang={setLang} theme={theme} setTheme={(v) => setTweak('theme', v)} />
+      {tweaks.particlesOn && <ParticleField density={tweaks.particleDensity} />}
+      <div className="grain" />
+      <Nav lang={lang} setLang={setLang} />
       <main>
-        <Hero lang={lang} heroStyle={tweaks.heroStyle} />
+        <Hero lang={lang} />
         <About lang={lang} />
+        <TerminalSection lang={lang} />
         <StackSection lang={lang} />
         <Projects lang={lang} />
         <Services lang={lang} />
@@ -141,31 +178,20 @@ export default function App() {
             label={lang === 'pt' ? 'Tema' : 'Theme'}
             value={tweaks.theme}
             options={[
-              { value: 'dark', label: lang === 'pt' ? 'Escuro' : 'Dark' },
-              { value: 'light', label: lang === 'pt' ? 'Claro' : 'Light' }
+              { value: 'dark',  label: lang === 'pt' ? 'Escuro' : 'Dark'  },
+              { value: 'light', label: lang === 'pt' ? 'Claro'  : 'Light' }
             ]}
             onChange={(v) => setTweak('theme', v)}
           />
         </TweakSection>
-        <TweakSection title={lang === 'pt' ? 'Hero' : 'Hero'}>
-          <TweakRadio
-            label={lang === 'pt' ? 'Estilo' : 'Style'}
-            value={tweaks.heroStyle}
-            options={[
-              { value: 'terminal', label: lang === 'pt' ? 'Terminal' : 'Terminal' },
-              { value: 'minimal', label: lang === 'pt' ? 'Minimal' : 'Minimal' }
-            ]}
-            onChange={(v) => setTweak('heroStyle', v)}
-          />
-        </TweakSection>
         <TweakSection title={lang === 'pt' ? 'Efeitos' : 'Effects'}>
           <TweakToggle
-            label={lang === 'pt' ? 'Matrix Rain' : 'Matrix Rain'}
-            value={tweaks.matrixOn}
-            onChange={(v) => setTweak('matrixOn', v)}
+            label={lang === 'pt' ? 'Partículas' : 'Particles'}
+            value={tweaks.particlesOn}
+            onChange={(v) => setTweak('particlesOn', v)}
           />
           <TweakSlider
-            label={lang === 'pt' ? 'Densidade de partículas' : 'Particle density'}
+            label={lang === 'pt' ? 'Densidade' : 'Density'}
             value={tweaks.particleDensity}
             min={0.1} max={1.5} step={0.1}
             onChange={(v) => setTweak('particleDensity', v)}
@@ -175,5 +201,3 @@ export default function App() {
     </>
   );
 }
-
-// ReactDOM.render moved to main.jsx
