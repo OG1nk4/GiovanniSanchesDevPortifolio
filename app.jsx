@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import IntroScreen from './IntroScreen.tsx';
 import { I18N } from './data.js';
 import { Icon } from './icons.jsx';
 import { Hero } from './hero.jsx';
@@ -108,7 +110,7 @@ function Nav({ lang, setLang }) {
     <>
       <nav className={`nav ${compact ? 'compact' : ''}`}>
         <a href="#home" className="nav-brand">
-          <img src="assets/logo-full.png" alt="Giovanni Sanches" className="nav-logo-img" />
+          <img src="/logo-gs.png" alt="Giovanni Sanches" className="nav-logo-img" />
         </a>
         <div className="nav-links">
           {links.map((l, i) => <a key={i} href={l.href}>{l.label}</a>)}
@@ -145,6 +147,8 @@ export default function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const theme = tweaks.theme;
 
+  const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('gs_intro_seen'));
+
   useEffect(() => { localStorage.setItem('gs_lang', lang); }, [lang]);
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -156,8 +160,17 @@ export default function App() {
     return () => window.removeEventListener('resize', set);
   }, []);
 
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('gs_intro_seen', 'true');
+    setShowIntro(false);
+  };
+
   return (
     <>
+      <AnimatePresence>
+        {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
+      </AnimatePresence>
+
       {tweaks.particlesOn && <ParticleField density={tweaks.particleDensity} />}
       <div className="grain" />
       <Nav lang={lang} setLang={setLang} />

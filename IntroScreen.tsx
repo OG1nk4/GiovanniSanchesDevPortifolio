@@ -334,14 +334,10 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
 
   return (
     <>
-      {/*
-        Importa as fontes via Google Fonts.
-        Em produção Next.js, remova este <style> e use next/font/google no layout.tsx.
-        Ver comentário no topo do arquivo.
+      {/* 
+        Aviso: as fontes 'Bebas Neue' e 'Outfit' já devem estar importadas globalmente
+        no index.html ou no layout.tsx.
       */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500&display=swap');
-      `}</style>
 
       {/* ── Wrapper principal: cobre 100vw × 100vh, z-index 9999 ── */}
       <div
