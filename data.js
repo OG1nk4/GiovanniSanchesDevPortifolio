@@ -18,11 +18,11 @@ export const I18N = {
       eyebrow: "01 — Sobre",
       title: ["Construo software com ", "propósito"],
       p1: "Sou estudante de **Análise e Desenvolvimento de Sistemas (4º semestre)** apaixonado por transformar problemas complexos em interfaces e sistemas que funcionam — de verdade.",
-      p2: "Meu campo de jogo: **desenvolvimento full-stack**, **inteligência artificial**, **automação com Python** e **front-end com cuidado obsessivo pelos detalhes**. Já levei à produção apps de saúde com IA, agregadores via web scraping, plataformas de pagamento via Pix e chatbots para ONGs.",
+      p2: "Minha expertise: **desenvolvimento full-stack**, **inteligência artificial**, **automação com Python** e **front-end com cuidado obsessivo pelos detalhes**. Já levei à produção apps de saúde com IA, agregadores via web scraping, plataformas de pagamento via Pix e chatbots para ONGs.",
       stats: [
         { n: "10+", lbl: "Projetos entregues" },
         { n: "4°", lbl: "Semestre / ADS" },
-        { n: "∞", lbl: "Cafés" }
+        { n: "24/7", lbl: "Comprometimento" }
       ],
       meta_a: "GUARULHOS · SP",
       meta_b: "Disponível para projetos"
@@ -129,7 +129,7 @@ export const I18N = {
         { label: "LinkedIn", href: "https://linkedin.com/in/giovanni-sanches-9b3371348/", icon: "linkedin" }
       ]
     },
-    footer: { left: "© 2026 Giovanni Sanches. Construído com café e cuidado.", right: "Guarulhos / SP / BR" }
+    footer: { left: "© 2026 Giovanni Sanches. Desenvolvido com excelência técnica.", right: "Guarulhos / SP / BR" }
   },
   en: {
     nav: { about: "About", stack: "Stack", work: "Work", services: "Services", contact: "Contact", cta: "Let's talk" },
@@ -149,11 +149,11 @@ export const I18N = {
       eyebrow: "01 — About",
       title: ["I build software with ", "purpose"],
       p1: "I'm a **Computer Systems student (4th semester)** obsessed with turning hard problems into interfaces and systems that actually work.",
-      p2: "My playground: **full-stack development**, **artificial intelligence**, **Python automation**, and **front-end with obsessive attention to detail**. Shipped: AI-powered health apps, web-scraping aggregators, Pix payment platforms and chatbots for NGOs.",
+      p2: "My expertise: **full-stack development**, **artificial intelligence**, **Python automation**, and **front-end with obsessive attention to detail**. Shipped: AI-powered health apps, web-scraping aggregators, Pix payment platforms and chatbots for NGOs.",
       stats: [
         { n: "10+", lbl: "Shipped projects" },
         { n: "4th", lbl: "Semester / CS" },
-        { n: "∞", lbl: "Coffees" }
+        { n: "24/7", lbl: "Commitment" }
       ],
       meta_a: "GUARULHOS · SP",
       meta_b: "Available for work"
@@ -224,7 +224,7 @@ export const I18N = {
         { label: "LinkedIn", href: "https://linkedin.com/in/giovanni-sanches-9b3371348/", icon: "linkedin" }
       ]
     },
-    footer: { left: "© 2026 Giovanni Sanches. Built with coffee and care.", right: "Guarulhos / SP / BR" }
+    footer: { left: "© 2026 Giovanni Sanches. Developed with technical excellence.", right: "Guarulhos / SP / BR" }
   }
 };
 
