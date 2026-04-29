@@ -42,7 +42,7 @@ export function StackSection({ lang }) {
     { name: "TypeScript", icn: "ts" }, { name: "React", icn: "react" },
     { name: "Next.js", icn: "next" }, { name: "Node.js", icn: "node" },
     { name: "Python", icn: "python" }, { name: "Java", icn: "java" },
-    { name: "Llama 3 API", icn: "ai" }, { name: "Supabase", icn: "db" },
+    { name: "Machine Learning", icn: "ai" }, { name: "Supabase", icn: "db" },
     { name: "MySQL", icn: "db" }, { name: "Docker", icn: "docker" },
     { name: "n8n", icn: "bolt" }, { name: "Angular", icn: "code" },
   ];
@@ -294,7 +294,12 @@ export function Contact({ lang }) {
           {t.title[0]}<em>{t.title[1]}</em>{t.title[2]}
         </h2>
         <p style={{ color: 'var(--fg-dim)', fontSize: 18, marginTop: 30, maxWidth: '46ch', marginLeft: 'auto', marginRight: 'auto' }}>{t.sub}</p>
-        <a className="contact-cta" href="mailto:ginkasanches@gmail.com">
+        <a 
+          className="contact-cta" 
+          href={lang === 'pt' ? "https://wa.me/5511940658904?text=Olá Giovanni, vi seu portfólio e gostaria de conversar!" : "https://wa.me/5511940658904?text=Hello Giovanni, I saw your portfolio and would like to talk!"}
+          target="_blank"
+          rel="noopener"
+        >
           {t.cta} <Icon.arrow />
         </a>
         <div className="contact-channels">

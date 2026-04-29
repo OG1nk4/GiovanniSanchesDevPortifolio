@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { I18N } from './data.js';
 
 const TAGS = [
-  { style: { top: '18%', left: '6%'  }, text: 'TypeScript',   delay: '0.45s' },
-  { style: { top: '26%', right: '7%' }, text: 'Next.js',      delay: '0.6s'  },
-  { style: { top: '52%', left: '4%'  }, text: 'React',        delay: '0.75s' },
-  { style: { top: '60%', right: '5%' }, text: 'Python',       delay: '0.9s'  },
-  { style: { top: '76%', left: '9%'  }, text: 'Supabase',     delay: '1.05s' },
-  { style: { top: '74%', right: '11%'}, text: 'n8n / Docker', delay: '1.2s'  },
+  { style: { top: '15%', left: '4%'  }, text: 'TypeScript',       delay: '0.45s' },
+  { style: { top: '25%', left: '10%' }, text: 'Next.js',          delay: '0.6s'  },
+  { style: { top: '38%', left: '3%'  }, text: 'React',            delay: '0.75s' },
+  { style: { top: '52%', left: '8%'  }, text: 'Python',           delay: '0.9s'  },
+  { style: { top: '65%', left: '4%'  }, text: 'Supabase',         delay: '1.05s' },
+  { style: { top: '78%', left: '12%' }, text: 'Machine Learning', delay: '1.2s'  },
 ];
 
 export function Hero({ lang }) {
@@ -21,14 +21,7 @@ export function Hero({ lang }) {
 
   return (
     <section className="hero" id="home">
-      {/* Drop assets/intro.mp4 to enable the video background */}
-      <video
-        className="hero-video"
-        autoPlay muted loop playsInline
-        poster="/giovanni-portrait.png"
-      >
-        <source src="assets/intro.mp4" type="video/mp4" />
-      </video>
+      {/* Background is now defined by gradients and particles */}
 
       <div className="hero-overlay" />
       <div className="hero-bg-blob" />

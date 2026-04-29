@@ -8,7 +8,7 @@ export const I18N = {
         { type: "comment", text: "// Inicializando portfólio v3.0..." },
         { type: "code", text: 'const dev = await new Developer({\n  name: "Giovanni Sanches",\n  role: "Full-Stack & AI Engineer",\n  location: "São Paulo, Brasil",\n  status: "available_for_hire"\n});' },
         { type: "comment", text: "// Stack:" },
-        { type: "code", text: 'dev.stack(["TypeScript", "React", "Next.js", "Python", "Node", "Llama 3"]);' },
+        { type: "code", text: 'dev.stack(["TypeScript", "React", "Next.js", "Python", "Node", "Machine Learning"]);' },
         { type: "comment", text: "// Pronto." },
         { type: "code", text: "dev.shipIt(); ✓" }
       ],
@@ -35,7 +35,7 @@ export const I18N = {
         { num: "01", title: "Linguagens", items: ["TypeScript", "JavaScript", "Python", "Java"] },
         { num: "02", title: "Frontend", items: ["React", "Next.js", "Angular", "HTML / CSS"] },
         { num: "03", title: "Backend & DB", items: ["Node.js", "Supabase", "MySQL", "SQL"] },
-        { num: "04", title: "AI & DevOps", items: ["Llama 3 API", "Deep Learning", "Docker", "n8n"] }
+        { num: "04", title: "AI & DevOps", items: ["Machine Learning", "Deep Learning", "Docker", "n8n"] }
       ]
     },
     projects: {
@@ -47,7 +47,7 @@ export const I18N = {
           tag: "FULL-STACK · IA",
           title: "NutriAI — App de Nutrição",
           desc: "App full-stack de saúde com reconhecimento de imagem por IA, cálculo automático de calorias e chat com histórico em tempo real.",
-          stack: ["Next.js", "Node.js", "Supabase", "Llama 3"],
+          stack: ["Next.js", "Node.js", "Supabase", "Machine Learning"],
           link: "Ver case"
         },
         {
@@ -68,7 +68,7 @@ export const I18N = {
           tag: "AI · ONG",
           title: "Chatbot IA para ONG",
           desc: "Chatbot inteligente para uma ONG, otimizando comunicação com investidores, doadores e colaboradores em escala.",
-          stack: ["Python", "Llama 3", "n8n"],
+          stack: ["Python", "Machine Learning", "n8n"],
           link: "Ver case"
         },
         {
@@ -93,7 +93,7 @@ export const I18N = {
       sub: "Para empresas que querem mover rápido sem sacrificar qualidade.",
       list: [
         { num: "01", t: "Web Apps Full-Stack", d: "Aplicações modernas com Next.js, React e Node — do MVP à produção, com foco em performance e UX." },
-        { num: "02", t: "Integrações com IA", d: "LLMs (Llama 3, GPT) integrados ao seu produto: chatbots, busca semântica, classificação e visão computacional." },
+        { num: "02", t: "Integrações com IA", d: "LLMs (Machine Learning, GPT) integrados ao seu produto: chatbots, busca semântica, classificação e visão computacional." },
         { num: "03", t: "Automações Python", d: "Scripts e pipelines que eliminam trabalho manual: scraping, ETL, automação Office, n8n e workflows custom." },
         { num: "04", t: "Front-end UI/UX", d: "Interfaces que clientes lembram. Animações fluidas, micro-interações e atenção obsessiva aos detalhes." },
         { num: "05", t: "Backend & APIs", d: "APIs REST/GraphQL escaláveis com Node, Supabase e MySQL. Auth, pagamentos (Pix), webhooks." },
@@ -124,7 +124,7 @@ export const I18N = {
       cta: "Iniciar conversa",
       channels: [
         { label: "ginkasanches@gmail.com", href: "mailto:ginkasanches@gmail.com", icon: "mail" },
-        { label: "+55 11 94065-8904", href: "tel:+5511940658904", icon: "phone" },
+        { label: "+55 11 94065-8904", href: "https://wa.me/5511940658904?text=Olá Giovanni, vi seu portfólio e gostaria de conversar!", icon: "phone" },
         { label: "github.com/OG1nk4", href: "https://github.com/OG1nk4", icon: "github" },
         { label: "LinkedIn", href: "https://linkedin.com/in/giovanni-sanches-9b3371348/", icon: "linkedin" }
       ]
@@ -139,7 +139,7 @@ export const I18N = {
         { type: "comment", text: "// Booting portfolio v3.0..." },
         { type: "code", text: 'const dev = await new Developer({\n  name: "Giovanni Sanches",\n  role: "Full-Stack & AI Engineer",\n  location: "São Paulo, Brazil",\n  status: "available_for_hire"\n});' },
         { type: "comment", text: "// Stack:" },
-        { type: "code", text: 'dev.stack(["TypeScript", "React", "Next.js", "Python", "Node", "Llama 3"]);' },
+        { type: "code", text: 'dev.stack(["TypeScript", "React", "Next.js", "Python", "Node", "Machine Learning"]);' },
         { type: "comment", text: "// Ready." },
         { type: "code", text: "dev.shipIt(); ✓" }
       ],
@@ -166,7 +166,7 @@ export const I18N = {
         { num: "01", title: "Languages", items: ["TypeScript", "JavaScript", "Python", "Java"] },
         { num: "02", title: "Frontend", items: ["React", "Next.js", "Angular", "HTML / CSS"] },
         { num: "03", title: "Backend & DB", items: ["Node.js", "Supabase", "MySQL", "SQL"] },
-        { num: "04", title: "AI & DevOps", items: ["Llama 3 API", "Deep Learning", "Docker", "n8n"] }
+        { num: "04", title: "AI & DevOps", items: ["Machine Learning", "Deep Learning", "Docker", "n8n"] }
       ]
     },
     projects: {
@@ -174,10 +174,10 @@ export const I18N = {
       title: ["Selected ", "work"],
       sub: "Each project solves a real problem. Scroll horizontally to explore.",
       list: [
-        { tag: "FULL-STACK · AI", title: "NutriAI — Nutrition App", desc: "Full-stack health app with AI image recognition, automatic calorie calculation and real-time chat history.", stack: ["Next.js", "Node.js", "Supabase", "Llama 3"], link: "View case" },
+        { tag: "FULL-STACK · AI", title: "NutriAI — Nutrition App", desc: "Full-stack health app with AI image recognition, automatic calorie calculation and real-time chat history.", stack: ["Next.js", "Node.js", "Supabase", "Machine Learning"], link: "View case" },
         { tag: "AUTOMATION · SCRAPING", title: "IT Jobs Aggregator", desc: "Python app that collects, centralizes and displays IT jobs from multiple platforms via web scraping.", stack: ["Python", "BeautifulSoup", "Flask"], link: "View case" },
         { tag: "FINTECH · PIX", title: "PC Raffle Platform", desc: "Full site to manage raffles with automated Pix payment integration, admin panel and live tracking.", stack: ["Next.js", "Node", "Pix API"], link: "View case" },
-        { tag: "AI · NGO", title: "AI Chatbot for NGO", desc: "Smart chatbot for an NGO, optimizing communication with investors, donors and collaborators at scale.", stack: ["Python", "Llama 3", "n8n"], link: "View case" },
+        { tag: "AI · NGO", title: "AI Chatbot for NGO", desc: "Smart chatbot for an NGO, optimizing communication with investors, donors and collaborators at scale.", stack: ["Python", "Machine Learning", "n8n"], link: "View case" },
         { tag: "MOBILE · ANDROID", title: "Task Management", desc: "Native Android app for team task organization with sync and smart notifications.", stack: ["Java", "Android", "MySQL"], link: "View case" },
         { tag: "ML · NLP", title: "Neural Networks", desc: "Built neural nets for image recognition and natural language processing with training pipelines.", stack: ["Python", "PyTorch", "NLP"], link: "View case" }
       ]
@@ -188,7 +188,7 @@ export const I18N = {
       sub: "For companies that want to move fast without sacrificing quality.",
       list: [
         { num: "01", t: "Full-Stack Web Apps", d: "Modern apps with Next.js, React and Node — from MVP to production, focused on performance and UX." },
-        { num: "02", t: "AI Integrations", d: "LLMs (Llama 3, GPT) baked into your product: chatbots, semantic search, classification and computer vision." },
+        { num: "02", t: "AI Integrations", d: "LLMs (Machine Learning, GPT) baked into your product: chatbots, semantic search, classification and computer vision." },
         { num: "03", t: "Python Automations", d: "Scripts and pipelines that kill manual work: scraping, ETL, Office automation, n8n and custom workflows." },
         { num: "04", t: "Front-end UI/UX", d: "Interfaces clients remember. Fluid animations, micro-interactions and obsessive attention to detail." },
         { num: "05", t: "Backend & APIs", d: "Scalable REST/GraphQL APIs with Node, Supabase and MySQL. Auth, payments (Pix), webhooks." },
@@ -219,7 +219,7 @@ export const I18N = {
       cta: "Start the conversation",
       channels: [
         { label: "ginkasanches@gmail.com", href: "mailto:ginkasanches@gmail.com", icon: "mail" },
-        { label: "+55 11 94065-8904", href: "tel:+5511940658904", icon: "phone" },
+        { label: "+55 11 94065-8904", href: "https://wa.me/5511940658904?text=Hello Giovanni, I saw your portfolio and would like to talk!", icon: "phone" },
         { label: "github.com/OG1nk4", href: "https://github.com/OG1nk4", icon: "github" },
         { label: "LinkedIn", href: "https://linkedin.com/in/giovanni-sanches-9b3371348/", icon: "linkedin" }
       ]
