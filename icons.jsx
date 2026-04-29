@@ -24,6 +24,7 @@ export const Icon = {
   docker: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="10" width="3" height="3"/><rect x="7" y="10" width="3" height="3"/><rect x="11" y="10" width="3" height="3"/><rect x="7" y="6" width="3" height="3"/><path d="M3 14c0 3 3 5 8 5s10-3 10-7H3v2z" fill="none" stroke="currentColor"/></svg>,
   db: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>,
   java: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 18s-3 1 3 2 9-1 9-1M8 14s-2 1 2 2 7 0 9-1M9 10s-3 1-1 2 6 1 8 0M11 2s2 4-2 7 1 5 1 5"/></svg>,
+  file: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>,
 };
 // Removed window assignment for ESM
 

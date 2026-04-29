@@ -29,6 +29,11 @@ export function About({ lang }) {
                 </div>
               ))}
             </div>
+            <div style={{ marginTop: 40 }}>
+              <a href="/cv-giovanni-sanches.pdf" download className="btn-outline">
+                <Icon.file /> {t.cv}
+              </a>
+            </div>
           </div>
         </div>
       </div>

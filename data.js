@@ -25,7 +25,8 @@ export const I18N = {
         { n: "24/7", lbl: "Comprometimento" }
       ],
       meta_a: "GUARULHOS · SP",
-      meta_b: "Disponível para projetos"
+      meta_b: "Disponível para projetos",
+      cv: "Baixar Currículo"
     },
     stack: {
       eyebrow: "02 — Toolkit",
@@ -59,8 +60,8 @@ export const I18N = {
         },
         {
           tag: "FINTECH · PIX",
-          title: "Plataforma de Rifa de PC",
-          desc: "Site completo para gerenciar rifas com integração de pagamento automatizado via Pix, painel de admin e tracking ao vivo.",
+          title: "Sistema de Sorteios Automáticos",
+          desc: "Plataforma robusta para gestão de campanhas promocionais com integração de pagamento automatizado via Pix, painel de admin e tracking ao vivo.",
           stack: ["Next.js", "Node", "Pix API"],
           link: "Ver case"
         },
@@ -156,7 +157,8 @@ export const I18N = {
         { n: "24/7", lbl: "Commitment" }
       ],
       meta_a: "GUARULHOS · SP",
-      meta_b: "Available for work"
+      meta_b: "Available for work",
+      cv: "Download CV"
     },
     stack: {
       eyebrow: "02 — Toolkit",
@@ -176,7 +178,7 @@ export const I18N = {
       list: [
         { tag: "FULL-STACK · AI", title: "NutriAI — Nutrition App", desc: "Full-stack health app with AI image recognition, automatic calorie calculation and real-time chat history.", stack: ["Next.js", "Node.js", "Supabase", "Machine Learning"], link: "View case" },
         { tag: "AUTOMATION · SCRAPING", title: "IT Jobs Aggregator", desc: "Python app that collects, centralizes and displays IT jobs from multiple platforms via web scraping.", stack: ["Python", "BeautifulSoup", "Flask"], link: "View case" },
-        { tag: "FINTECH · PIX", title: "PC Raffle Platform", desc: "Full site to manage raffles with automated Pix payment integration, admin panel and live tracking.", stack: ["Next.js", "Node", "Pix API"], link: "View case" },
+        { tag: "FINTECH · PIX", title: "Automated Sweepstakes System", desc: "Robust platform to manage promotional campaigns with automated Pix payment integration, admin panel and live tracking.", stack: ["Next.js", "Node", "Pix API"], link: "View case" },
         { tag: "AI · NGO", title: "AI Chatbot for NGO", desc: "Smart chatbot for an NGO, optimizing communication with investors, donors and collaborators at scale.", stack: ["Python", "Machine Learning", "n8n"], link: "View case" },
         { tag: "MOBILE · ANDROID", title: "Task Management", desc: "Native Android app for team task organization with sync and smart notifications.", stack: ["Java", "Android", "MySQL"], link: "View case" },
         { tag: "ML · NLP", title: "Neural Networks", desc: "Built neural nets for image recognition and natural language processing with training pipelines.", stack: ["Python", "PyTorch", "NLP"], link: "View case" }
