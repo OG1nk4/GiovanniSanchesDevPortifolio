@@ -43,6 +43,10 @@
     html.js:not(.motion-ready) [data-anim] {
       opacity: 0;
     }
+    /* The particle canvas draws the hero name; the real text stays for SEO. */
+    html.js [data-particle-text]:not([data-particles='off']) {
+      color: transparent;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -1,8 +1,10 @@
-import Image from 'next/image';
 import { dictionaries, links, stack, type Lang } from '@/lib/content';
 import { projects } from '@/lib/projects';
+import { DotField } from './DotField';
+import { HalftonePortrait } from './HalftonePortrait';
 import { Header } from './Header';
 import { Motion } from './Motion';
+import { ParticleName } from './ParticleName';
 import { ProjectShowcase } from './ProjectShowcase';
 import { Roll } from './Roll';
 
@@ -43,18 +45,6 @@ function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string
         {children}
       </div>
     </section>
-  );
-}
-
-function HeroWord({ word }: { word: string }) {
-  return (
-    <span className="block overflow-hidden pb-[0.04em]">
-      {[...word].map((c, i) => (
-        <span key={i} data-hero-char data-anim="hero" className="inline-block will-change-transform">
-          {c}
-        </span>
-      ))}
-    </span>
   );
 }
 
@@ -102,14 +92,10 @@ export function HomePage({ lang }: { lang: Lang }) {
               {t.hero.kicker}
             </p>
 
-            <h1
-              aria-label="Giovanni Sanches"
-              data-hero-name
-              className="mt-6 text-[clamp(3.25rem,17vw,14rem)] font-semibold uppercase leading-[0.86] tracking-[-0.045em]"
-            >
-              <HeroWord word="Giovanni" />
-              <HeroWord word="Sanches" />
-            </h1>
+            <ParticleName
+              words={['Giovanni', 'Sanches']}
+              className="text-[clamp(3.25rem,17vw,14rem)] font-semibold uppercase leading-[0.86] tracking-[-0.045em]"
+            />
 
             <div data-hero-rule data-anim="hero" aria-hidden="true" className="mt-10 h-px origin-left bg-line md:mt-14" />
 
@@ -213,13 +199,7 @@ export function HomePage({ lang }: { lang: Lang }) {
         <Section id="about" eyebrow={t.about.label} title={t.about.title}>
           <div className="grid gap-12 md:grid-cols-12">
             <div data-anim="clip" className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-sm md:col-span-4 md:max-w-none">
-              <Image
-                src="/giovanni-portrait.png"
-                alt={t.about.photoAlt}
-                fill
-                sizes="(min-width: 768px) 30vw, 90vw"
-                className="object-cover object-top will-change-transform"
-              />
+              <HalftonePortrait src="/giovanni-portrait.png" alt={t.about.photoAlt} width={571} height={1024} />
             </div>
 
             <div className="md:col-span-7 md:col-start-6">
@@ -302,8 +282,9 @@ export function HomePage({ lang }: { lang: Lang }) {
         </Section>
 
         {/* Contact */}
-        <section id="contact" aria-labelledby="contact-title" className="pb-10">
-          <div className={container}>
+        <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden pb-10">
+          <DotField />
+          <div className={`${container} relative`}>
             <Line className="mb-24 md:mb-36" />
             <p data-anim="up" className={label}>
               {t.contact.label}

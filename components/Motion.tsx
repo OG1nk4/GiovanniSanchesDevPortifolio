@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
+import { CursorTrail } from './CursorTrail';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -42,7 +43,6 @@ function scramble(targets: HTMLElement[], duration = 1) {
 }
 
 function setupHero() {
-  const chars = gsap.utils.toArray<HTMLElement>('[data-hero-char]');
   const tl = gsap.timeline({ defaults: { ease: EXPO } });
 
   const lead = document.querySelector<HTMLElement>('[data-hero-lead]');
@@ -52,8 +52,6 @@ function setupHero() {
 
   tl.fromTo('[data-header]', { yPercent: -100, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1.2 }, 0)
     .fromTo('[data-hero-kicker]', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1 }, 0.15)
-    .fromTo(chars, { yPercent: 115, rotate: 6, autoAlpha: 1 }, { yPercent: 0, rotate: 0, duration: 1.5, stagger: 0.04 }, 0.2)
-    .add(scramble(chars, 1.3), 0.2)
     .fromTo('[data-hero-rule]', { scaleX: 0, autoAlpha: 1 }, { scaleX: 1, duration: 1.6, ease: 'expo.inOut' }, 0.6)
     .fromTo(leadLines, { yPercent: 100 }, { yPercent: 0, duration: 1.2, stagger: 0.08 }, 0.9)
     .fromTo('[data-hero-fade]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.1 }, 1.05);
@@ -122,7 +120,7 @@ function setupReveals() {
 
   // Image revealed by a rising mask, then keeps a slow parallax inside it.
   gsap.utils.toArray<HTMLElement>('[data-anim="clip"]').forEach((el) => {
-    const img = el.querySelector('img');
+    const img = el.querySelector<HTMLElement>('[data-media]') ?? el.querySelector('img');
     gsap.fromTo(
       el,
       { clipPath: 'inset(100% 0% 0% 0%)', autoAlpha: 1 },
@@ -221,7 +219,7 @@ function setupPointer(cursor: HTMLElement | null) {
       if (e.pointerType !== 'mouse') return;
       cx(e.clientX);
       cy(e.clientY);
-      const interactive = !!(e.target as Element | null)?.closest('a, button, [data-cursor]');
+      const interactive = e.target instanceof Element && !!e.target.closest('a, button, [data-cursor]');
       if (interactive !== hovering) {
         hovering = interactive;
         gsap.to(cursor, { scale: interactive ? 2.4 : 1, duration: 0.5, ease: 'power3.out' });
@@ -296,6 +294,7 @@ export function Motion() {
 
   return (
     <>
+      <CursorTrail />
       <div
         data-progress
         aria-hidden="true"
