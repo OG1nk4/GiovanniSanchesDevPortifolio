@@ -76,6 +76,8 @@ const pt = {
       },
     ],
     note: 'Não trabalho com pacote fechado. O orçamento sai depois de uma conversa sobre o que você precisa.',
+    quote: 'Pedir orçamento',
+    quoteMessage: 'Olá Giovanni, vi seu site e queria um orçamento de:',
   },
   work: {
     label: 'Projetos',
@@ -180,6 +182,8 @@ const en: Dictionary = {
       },
     ],
     note: 'No fixed packages. I quote after we talk about what you need.',
+    quote: 'Get a quote',
+    quoteMessage: 'Hi Giovanni, I saw your website and would like a quote for:',
   },
   work: {
     label: 'Work',

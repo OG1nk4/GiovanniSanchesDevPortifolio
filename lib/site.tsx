@@ -31,8 +31,16 @@ export function buildMetadata(lang: Lang): Metadata {
 
 export function RootHtml({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   return (
-    <html lang={lang === 'pt' ? 'pt-BR' : 'en'} className={mono.variable}>
+    <html lang={lang === 'pt' ? 'pt-BR' : 'en'} className={mono.variable} suppressHydrationWarning>
       <head>
+        <script
+          // Runs before paint: lets CSS hide elements that will animate in, and
+          // un-hides them after 4s if the animation script never takes over.
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js');setTimeout(function(){var d=document.documentElement;if(!d.classList.contains('motion-ready'))d.classList.remove('js')},4000)",
+          }}
+        />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
         <link
           rel="stylesheet"
