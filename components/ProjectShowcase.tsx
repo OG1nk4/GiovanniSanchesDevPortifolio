@@ -43,11 +43,9 @@ export function ProjectShowcase({ projects, lang, visitLabel }: Props) {
     <div className="relative">
       <ul className="border-t border-line" onPointerMove={onMove} onPointerLeave={() => setActive(null)}>
         {projects.map((p, i) => (
-          <li key={p.href} className="border-b border-line">
-            <a
+          <li key={p.title} className="border-b border-line">
+            <Row
               href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
               onPointerEnter={(e) => {
                 if (e.pointerType === 'mouse') {
                   target.current = { x: e.clientX, y: e.clientY };
@@ -56,19 +54,19 @@ export function ProjectShowcase({ projects, lang, visitLabel }: Props) {
               }}
               className="group grid gap-4 py-8 md:grid-cols-12 md:items-baseline md:py-10"
             >
-              <span className="font-mono text-xs text-muted md:col-span-2">{p.year}</span>
+              <span className="font-mono text-xs text-muted md:col-span-2">{typeof p.year === 'string' ? p.year : p.year[lang]}</span>
               <span className="text-3xl font-medium tracking-tight transition-colors duration-300 group-hover:text-accent md:col-span-5 md:text-5xl">
                 {p.title}
               </span>
               <span className="text-muted md:col-span-5">
                 {p.description[lang]}
                 <span className="mt-3 block font-mono text-xs">{p.stack.join(' / ')}</span>
-                <span className="sr-only"> — {visitLabel}</span>
+                {p.href && <span className="sr-only"> — {visitLabel}</span>}
               </span>
               <span className="relative mt-2 block aspect-[16/10] overflow-hidden rounded-sm pointer-fine:hidden md:col-span-12">
                 <Image src={p.image} alt="" fill sizes="100vw" className="object-cover" />
               </span>
-            </a>
+            </Row>
           </li>
         ))}
       </ul>
@@ -82,7 +80,7 @@ export function ProjectShowcase({ projects, lang, visitLabel }: Props) {
       >
         {projects.map((p, i) => (
           <Image
-            key={p.href}
+            key={p.title}
             src={p.image}
             alt=""
             fill
@@ -93,4 +91,17 @@ export function ProjectShowcase({ projects, lang, visitLabel }: Props) {
       </div>
     </div>
   );
+}
+
+type RowProps = React.HTMLAttributes<HTMLElement> & { href?: string };
+
+/** A project row: a link when the project has a public URL, a plain block otherwise. */
+function Row({ href, children, ...rest }: RowProps) {
+  if (href)
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+        {children}
+      </a>
+    );
+  return <div {...rest}>{children}</div>;
 }

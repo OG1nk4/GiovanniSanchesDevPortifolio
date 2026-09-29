@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { links, type Dictionary, type Lang } from '@/lib/content';
 import { Roll } from './Roll';
+import { LogoMark } from './LogoMark';
 
 type Props = { t: Dictionary; lang: Lang; hasProjects: boolean };
 
@@ -21,7 +21,7 @@ export function Header({ t, lang, hasProjects }: Props) {
           aria-label="Giovanni Sanches"
           className="-ml-1 inline-flex size-11 shrink-0 items-center justify-center transition-transform duration-700 ease-out-expo hover:rotate-[-8deg] hover:scale-110"
         >
-          <Image src="/logo-gs.png" alt="" width={36} height={36} priority />
+          <LogoMark className="h-8 w-auto" />
         </a>
 
         <nav className="hidden md:block">
@@ -40,6 +40,17 @@ export function Header({ t, lang, hasProjects }: Props) {
         </nav>
 
         <div className="flex items-center gap-2">
+          <a
+            href={links.cv}
+            download
+            aria-label={t.nav.cvLabel}
+            className="group hidden h-11 items-center gap-1.5 px-2 font-mono text-xs text-muted transition-colors hover:text-fg sm:inline-flex"
+          >
+            <Roll>{t.nav.cv}</Roll>
+            <svg aria-hidden="true" viewBox="0 0 16 16" className="size-3.5 transition-transform duration-500 ease-out-expo group-hover:translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M8 3v9M4 8.5 8 12.5l4-4M3 14h10" />
+            </svg>
+          </a>
           {/* Plain <a>: PT and EN are separate root layouts, so this is a full
               navigation — which is what lets the CSS view transition run. */}
           <a

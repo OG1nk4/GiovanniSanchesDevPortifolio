@@ -3,6 +3,7 @@ import { projects } from '@/lib/projects';
 import { DotField } from './DotField';
 import { HalftonePortrait } from './HalftonePortrait';
 import { Header } from './Header';
+import { HeroScene } from './HeroScene';
 import { Motion } from './Motion';
 import { ParticleName } from './ParticleName';
 import { ProjectShowcase } from './ProjectShowcase';
@@ -86,58 +87,70 @@ export function HomePage({ lang }: { lang: Lang }) {
 
       <main>
         {/* Hero */}
-        <section id="top" data-hero-section className="flex min-h-svh flex-col justify-end overflow-hidden pb-12 pt-28 md:pb-16">
-          <div data-hero-inner className={container}>
-            <p data-hero-kicker data-anim="hero" className={label}>
-              {t.hero.kicker}
-            </p>
+        <section
+          id="top"
+          data-hero-section
+          className="relative flex min-h-svh flex-col overflow-hidden pt-28 lg:justify-center lg:pb-16"
+        >
+          <div data-hero-inner className={`${container} relative z-10`}>
+            <div className="max-w-xl lg:max-w-[27rem]">
+              <p data-hero-kicker data-anim="hero" className={label}>
+                {t.hero.kicker}
+              </p>
 
-            <ParticleName
-              words={['Giovanni', 'Sanches']}
-              className="text-[clamp(3.25rem,17vw,14rem)] font-semibold uppercase leading-[0.86] tracking-[-0.045em]"
-            />
+              <ParticleName
+                words={['Giovanni', 'Sanches']}
+                className="whitespace-nowrap text-[clamp(3rem,14vw,6rem)] font-semibold uppercase leading-[0.86] tracking-[-0.045em] lg:text-[clamp(2.8rem,4.4vw,4.6rem)]"
+              />
 
-            <div data-hero-rule data-anim="hero" aria-hidden="true" className="mt-10 h-px origin-left bg-line md:mt-14" />
+              <div data-hero-rule data-anim="hero" aria-hidden="true" className="mt-8 h-px origin-left bg-line" />
 
-            <div className="grid gap-10 pt-8 md:grid-cols-12 md:items-end">
-              <p data-hero-lead data-anim="hero" className="max-w-xl text-lg leading-relaxed text-fg/85 md:col-span-6 md:text-xl">
+              <p data-hero-lead data-anim="hero" className="pt-6 text-lg leading-relaxed text-fg/85">
                 {t.hero.lead}
               </p>
 
-              <div className="flex flex-col gap-5 md:col-span-6 md:items-end">
-                <p data-hero-fade data-anim="hero" className="flex items-center gap-2 text-sm text-muted">
-                  <span aria-hidden="true" className="relative flex size-1.5">
-                    <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-60" />
-                    <span className="relative size-1.5 rounded-full bg-accent" />
+              <p data-hero-fade data-anim="hero" className="mt-6 flex items-center gap-2 text-sm text-muted">
+                <span aria-hidden="true" className="relative flex size-1.5">
+                  <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-60" />
+                  <span className="relative size-1.5 rounded-full bg-accent" />
+                </span>
+                {t.hero.availability}
+              </p>
+
+              <div data-hero-fade data-anim="hero" className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href={whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-magnetic
+                  className={`${fillButton} h-12 bg-fg px-6 text-sm font-medium text-bg before:bg-accent`}
+                >
+                  <span className="relative">
+                    <Roll>{t.hero.ctaPrimary}</Roll>
                   </span>
-                  {t.hero.availability}
-                </p>
-                <div data-hero-fade data-anim="hero" className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <a
-                    href={whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-magnetic
-                    className={`${fillButton} h-12 bg-fg px-6 text-sm font-medium text-bg before:bg-accent`}
-                  >
-                    <span className="relative">
-                      <Roll>{t.hero.ctaPrimary}</Roll>
-                    </span>
-                    <Arrow className="relative transition-transform duration-500 ease-out-expo group-hover:rotate-45" />
-                  </a>
-                  <a
-                    href="#services"
-                    data-magnetic
-                    className={`${fillButton} h-12 border border-line px-6 text-sm hover:text-bg before:bg-fg`}
-                  >
-                    <span className="relative">
-                      <Roll>{t.hero.ctaSecondary}</Roll>
-                    </span>
-                  </a>
-                </div>
+                  <Arrow className="relative transition-transform duration-500 ease-out-expo group-hover:rotate-45" />
+                </a>
+                <a
+                  href="#services"
+                  data-magnetic
+                  className={`${fillButton} h-12 border border-line px-6 text-sm hover:text-bg before:bg-fg`}
+                >
+                  <span className="relative">
+                    <Roll>{t.hero.ctaSecondary}</Roll>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
+
+          <HeroScene
+            copy={{
+              services: t.services.items.map((s) => s.title),
+              phrases: t.hero.phrases,
+              metrics: t.hero.metrics,
+              photoAlt: t.hero.photoAlt,
+            }}
+          />
         </section>
 
         <Marquee words={t.services.items.map((s) => s.title)} />
